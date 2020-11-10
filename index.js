@@ -8,7 +8,7 @@ app.listen(3000);
 //mongoose
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://adminos :v16vY9s8my3JgABN@cluster0.rwxhd.mongodb.net/Marvels?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://adminos:v16vY9s8my3JgABN@cluster0.rwxhd.mongodb.net/Marvels?retryWrites=true&w=majority',
  {useNewUrlParser: true, useUnifiedTopology: true},function(err){
     if(err){
         console.log(new(Date)+"mongoose connect err "+ err);
