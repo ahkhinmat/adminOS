@@ -52,15 +52,17 @@ app.post("/add",function(req,res){
         } else if (err) {
           console.log("An unknown error occurred when uploading." + err);
         }else{
+            // không có lỗi
             console.log("Upload is okay");
-            console.log(req.file); // Thông tin file đã upload
-            if(req.body.txtUn && req.body.txtPa){
-                var un = req.body.txtUn;
-                var pa = req.body.txtPa;
-                res.json({"username":un, "password": pa, "file": req.file.filename});
-            }else{
-                res.json({"result":0});
-            }
+            // console.log(req.file); // Thông tin file đã upload
+            // if(req.body.txtUn && req.body.txtPa){
+            //     var un = req.body.txtUn;
+            //     var pa = req.body.txtPa;
+            //     res.json({"username":un, "password": pa, "file": req.file.filename});
+            // }else{
+            //     res.json({"result":0});
+            // }
+            res.send(req.file.filename);
         }
 
     });
