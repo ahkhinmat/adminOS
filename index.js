@@ -67,17 +67,9 @@ app.post("/add",function(req,res){
           //console.log("An unknown error occurred when uploading." + err);
           res.json({"kq":0,"errMsg":" unknown error occurred when uploading"});
         }else{
-            // không có lỗi
+   
             console.log("Upload is okay");
-            // console.log(req.file); // Thông tin file đã upload
-            // if(req.body.txtUn && req.body.txtPa){
-            //     var un = req.body.txtUn;
-            //     var pa = req.body.txtPa;
-            //     res.json({"username":un, "password": pa, "file": req.file.filename});
-            // }else{
-            //     res.json({"result":0});
-            // }
-            res.send(req.file.filename);
+
             var marvel=Marvel({
                 Name:req.body.txtName,
                 Image:req.file.filename,
