@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:3000"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <style>
+        input{
+            margin: 10px;
+        }
+    </style>
+    <h1>Edit Marvel</h1> 
+    <form action="./edit" method="POST" enctype="multipart/form-data" >
+        <input type="text" name="txtName" value="<%- nhanvat.Name  %> "  placeholder="Tên"/><br>
+        <input type="file" name='marvelImage'/><br>
+        <input type="text" name="txtLevel" placeholder="Level" value="<%- nhanvat.Level %> "/><br>
+        <input type="submit" value="Lưu"/>
+    </form>
+ 
+</body>
+</html>

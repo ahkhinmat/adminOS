@@ -3,17 +3,20 @@ var app=express();
 
 app.set("view engine","ejs");
 app.set("views","./views");
-app.use(express.static("public"));
+//app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 app.listen(3000);
 //mongoose
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://adminos:v16vY9s8my3JgABN@cluster0.rwxhd.mongodb.net/Marvels?retryWrites=true&w=majority',
+
+mongoose.connect('mongodb+srv://adminios:jFrN3z6qzYc0ZhmJ@cluster0.vxam6.mongodb.net/Matvels?retryWrites=true&w=majority',
+
  {useNewUrlParser: true, useUnifiedTopology: true},function(err){
     if(err){
         console.log(new(Date)+"mongoose connect err "+ err);
     }else{
-        console.log("Connect ok")
+        console.log("Connect dữ liệu ok")
     }}
 );
 //
@@ -54,6 +57,7 @@ app.get("/",(req,res)=>{
     res.json(captain); 
 });
 
+
 app.get("/add",function(req,res){
     res.render("add");
 });
@@ -86,4 +90,28 @@ app.post("/add",function(req,res){
         }
 
     });
+})
+app.get("/list",(req,res)=>{
+    Marvel.find(function(err,data){
+        if(err){
+            res.json({"kq":0,"errMsg":err})
+        }else{
+            res.render("list",{danhsach:data});
+            //res.send("kkk");
+        }
+    })
+});
+app.get("/edit/:id",(req,res)=>{
+    Marvel.findById(req.params.id,function(err,char){
+        if(err){
+            res.json({"kq":0,"errMsg":err});
+        }   else{
+            console.log(char);
+            res.render("edit",{nhanvat:char});
+        }
+    })
+   
+});
+app.post("/edit",(req,res)=>{
+    res.send("Xử lý.."); 
 })
