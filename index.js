@@ -7,7 +7,7 @@ app.set("views","./views");
 app.use(express.static(__dirname + '/public'));
 app.listen(3000);
 /*Cấu hình server*/
-//mongoose
+/* Cấu hình DB mongoose*/
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://adminios:jFrN3z6qzYc0ZhmJ@cluster0.vxam6.mongodb.net/Matvels?retryWrites=true&w=majority',
 
