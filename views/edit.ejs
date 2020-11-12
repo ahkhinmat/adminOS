@@ -14,11 +14,12 @@
     </style>
     <h1>Edit Marvel</h1> 
     <form action="./edit" method="POST" enctype="multipart/form-data" >
+        <input type="hidden" value="<%- nhanvat._id %>" name="IDChar"/>
         <input type="text" name="txtName" value="<%- nhanvat.Name  %> "  placeholder="Tên"/><br>
+        <img width="100" src="upload/<%- nhanvat.Image  %> "/>
         <input type="file" name='marvelImage'/><br>
         <input type="text" name="txtLevel" placeholder="Level" value="<%- nhanvat.Level %> "/><br>
         <input type="submit" value="Lưu"/>
     </form>
- 
 </body>
 </html>

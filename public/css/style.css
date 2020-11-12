@@ -51,6 +51,7 @@ text-transform: uppercase;
 	display: block;float: left; width: 45%;
 	background-color: black;padding: 3px; color: chartreuse;
 	text-decoration: none;
+	margin-bottom: 20px;;
 }
 .charactor a:hover{
 	background-color: brown;

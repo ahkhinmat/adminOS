@@ -65,10 +65,10 @@ app.post("/add",function(req,res){
    
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
-          //console.log("A Multer error occurred when uploading."); 
+         
           res.json({"kq":0,"errMsg":" Multer error occurred when uploading"});
         } else if (err) {
-          //console.log("An unknown error occurred when uploading." + err);
+         
           res.json({"kq":0,"errMsg":" unknown error occurred when uploading"});
         }else{
    
@@ -83,12 +83,12 @@ app.post("/add",function(req,res){
                 if (err){
                     res.json({"kq":0,"errMsg":err});
                 }else{
-                    res.json({"kq":1});
+                    //res.json({"kq":1});
+                    res.redirect("./list");
                 }
                 
             })
         }
-
     });
 })
 app.get("/list",(req,res)=>{
@@ -106,12 +106,60 @@ app.get("/edit/:id",(req,res)=>{
         if(err){
             res.json({"kq":0,"errMsg":err});
         }   else{
-            console.log(char);
+            //console.log(char);
             res.render("edit",{nhanvat:char});
         }
     })
    
 });
 app.post("/edit",(req,res)=>{
-    res.send("Xử lý.."); 
+    
+    upload(req, res, function (err) {
+       //nếu không chọn hình
+        
+        if(!req.file){
+            Marvel.updateOne({ _id:req.body.IDChar},{
+                Name:req.body.txtName,
+                Level:req.body.txtLevel 
+              }, function(err){
+                if(err){
+                    res.json({"kq":0,"Lỗi cập nhật Db":err});
+                }else{
+                    res.redirect("./list");
+                }
+              })
+        }else{
+            //Nếu chọn hình
+            if (err instanceof multer.MulterError) {
+            
+                res.json({"kq":0,"errMsg":" Multer error occurred when uploading"});
+              } else if (err) {
+               
+                res.json({"kq":0,"errMsg":" unknown error occurred when uploading"+err});
+              }else{
+                Marvel.updateOne({ _id:req.body.IDChar},{
+                  Name:req.body.txtName,
+                  Image:req.file.filename,
+                  Level:req.body.txtLevel 
+                }, function(err){
+                  if(err){
+                      res.json({"kq":0,"Lỗi cập nhật Db":err});
+                  }else{
+                      res.redirect("./list");
+                  }
+                })
+              }
+        }
+  
+        //nếu chọn hình
+    });
+});
+app.get("/delete/:id/",(req,res)=>{
+    Marvel.deleteOne({_id:req.params.id},(err)=>{
+        if(err){
+            res.json({"kq":0,"Lỗi xóa":err});
+        }else{
+            res.redirect("../list");
+        }
+    })
 })
