@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>  
+      $(document).ready(function(){
+        $(".charactor:odd").css("background-color","yellow");
+        $(".charactor").mouseover(function(){
+          $(this).addClass("ao");
+        });
+        $(".charactor").mouseout(function(){
+          $(this).removeClass("ao");
+        });
+       })
+ 
+      </script>
+    
 </head>
   <body>
 
@@ -62,7 +76,7 @@
               <div class="marvelLevel"><%- marvel.Level  %> </div>
               <div class="button">
                   <a href="./edit/<%- marvel._id  %> ">Edit</a>
-                  <a href="./delete/<%- marvel._id  %> ">Delete</a>
+                  <a onclick="return confirm('are you sure delete <%- marvel.Name  %>?') " href="./delete/<%- marvel._id  %> ">Delete</a>
               </div>
             </div>
           
